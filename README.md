@@ -1,0 +1,2 @@
+# ecoscore-ai-smart-carbon-footprint-tracker-for-everyday-purchases
+EcoScore AI is a mobile app that instantly calculates the carbon footprint of everyday purchases by scanning receipts or barcodes, gamifying sustainable shopping with personal carbon budgets, challenges, and rewards. With climate consciousness surging and Gen Z driving purchasing decisions, this taps into the $150B+ sustainable consumer goods marke
