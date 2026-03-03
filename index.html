@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoScore AI - Smart Carbon Footprint Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #F1F8E9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #2E7D32;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #81C784;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2E7D32 0%, #81C784 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background-color: #FF8F00;
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #F57C00;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 143, 0, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #2E7D32;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #2E7D32;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2E7D32, #81C784);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2E7D32;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: #F1F8E9;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #FF8F00;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2E7D32;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #2E7D32;
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2E7D32;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #FF8F00;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2E7D32;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .plan-button:hover {
+            background-color: #1B5E20;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #F1F8E9;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2E7D32;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: #F1F8E9;
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #2E7D32;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Email Signup */
+        .email-signup {
+            background: linear-gradient(135deg, #2E7D32, #81C784);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .signup-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .signup-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .signup-button {
+            background-color: #FF8F00;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-button:hover {
+            background-color: #F57C00;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2E7D32;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .signup-form {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">🌱 EcoScore AI</a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Shop Smart, Save the Planet</h1>
+            <p>Instantly track the carbon footprint of your purchases with AI-powered scanning. Make sustainable choices effortlessly, one receipt at a time.</p>
+            <a href="#pricing" class="cta-button">Start Your Eco Journey</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why EcoScore AI?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Instant Carbon Scanning</h3>
+                    <p>Simply scan receipts or barcodes to get real-time carbon footprint data. No more guessing - get accurate, ANZ-specific environmental impact scores in seconds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Actionable Alternatives</h3>
+                    <p>Skip the guilt, embrace solutions. Get personalized recommendations like "Switch to Brand X and save 40% carbon" with better alternatives available at your local stores.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Gamified Sustainability</h3>
+                    <p>Set carbon budgets, join challenges, and climb leaderboards. Turn sustainable shopping into an engaging experience that motivates lasting change.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Local Retailer Integration</h3>
+                    <p>Seamlessly integrated with Woolworths, Countdown, and local retailers. Access real supply chain data for the most accurate impact calculations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Scan & Shop</h3>
+                    <p>Scan receipts or barcodes while shopping to instantly see carbon impact scores</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get Insights</h3>
+                    <p>Receive detailed breakdowns and smart alternative recommendations</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Track Progress</h3>
+                    <p>Monitor your carbon budget, complete challenges, and celebrate wins</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Make Impact</h3>
+                    <p>Share achievements and inspire others in your sustainability journey</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Choose Your Plan</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">Free</div>
+                    <ul class="plan-features">
+                        <li>5 scans per month</li>
+                        <li>Basic carbon scores</li>
+                        <li>Simple tracking dashboard</li>
+                        <li>Community access</li>
+                    </ul>
+                    <button class="plan-button">Get Started</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="plan-name">EcoWarrior</div>
+                    <div class="plan-price">$4.99<span style="font-size: 1rem;">/mo</span></div>
+                    <ul class="plan-features">
+                        <li>Unlimited scans</li>
+                        <li>Detailed impact breakdown</li>
+                        <li>Carbon budget setting</li>
+                        <li>Progress tracking</li>
+                        <li>Basic challenges</li>
+                    </ul>
+                    <button class="plan-button">Start Free Trial</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="plan-name">EcoChampion</div>
+                    <div class="plan-price">$9.99<span style="font-size: 1rem;">/mo</span></div>
+                    <ul class="plan-features">
+                        <li>All EcoWarrior features</li>
+                        <li>Alternative product suggestions</li>
+                        <li>Advanced analytics</li>
+                        <li>Custom goals</li>
+                        <li>Carbon offset marketplace</li>
+                        <li>Family sharing</li>
+                    </ul>
+                    <button class="plan-button">Go Premium</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Finally, a way to shop with confidence! EcoScore AI takes the guesswork out of sustainable shopping. I've reduced my carbon footprint by 30% in just two months."</p>
+                    <div class="testimonial-author">- Sarah Chen, Wellington</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"The gamification aspect is brilliant! My teenage kids are now competing to make the most eco-friendly purchases. It's made sustainability a family adventure."</p>
+                    <div class="testimonial-author">- Mark Thompson, Sydney</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"As someone who wants to shop sustainably but lacks time to research, EcoScore AI is a game-changer. The alternative product suggestions are spot-on."</p>
+                    <div class="testimonial-author">- Priya Patel, Melbourne</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">How accurate are the carbon footprint calculations?</div>
+                <div class="faq-answer">Our proprietary algorithm combines product lifecycle assessment data with local ANZ supply chain factors for region-specific accuracy. We partner with certified environmental data providers and update our database monthly.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Which retailers are supported?</div>
+                <div class="faq-answer">We currently support major retailers including Woolworths, Countdown, Coles, and hundreds of local stores. We're continuously expanding our retailer network and database.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I use this for online purchases?</div>
+                <div class="faq-answer">Yes! You can scan digital receipts from online purchases or manually search our product database. We support both in-store and online shopping tracking.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is my shopping data private?</div>
+                <div class="faq-answer">Absolutely. We use enterprise-grade encryption and never sell your data. Your shopping habits remain completely private and are only used to provide you with personalized recommendations.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="email-signup">
+        <div class="container">
+            <h2>Join the Sustainable Shopping Revolution</h2>
+            <p>Get early access to new features and exclusive eco-tips</p>
+            <div class="signup-form">
+                <input type="email" class="signup-input" placeholder="Enter your email address">
+                <button class="signup-button">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Support</a>
+                <a href="#">About Us</a>
+                <a href="#">Blog</a>
+            </div>
+            <p>&copy; 2024 EcoScore AI. All rights reserved. Making sustainable shopping simple, one scan at a time.</p>
+        </div>
+    </footer>
+</body>
+</html>
