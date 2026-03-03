@@ -1,0 +1,16 @@
+{
+  "name": "ecoscore-ai-smart-carbon-footprint-tracker-for-everyday-purchases",
+  "version": "0.1.0",
+  "description": "EcoScore AI is a mobile app that instantly calculates the carbon footprint of everyday purchases by scanning receipts or barcodes, gamifying sustainable shopping with personal carbon budgets, challeng",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "ai",
+    "saas",
+    "the-firm"
+  ],
+  "author": "The Firm — AI Venture Studio",
+  "license": "MIT"
+}
